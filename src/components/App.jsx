@@ -10,7 +10,7 @@ export class App extends Component {
   handleSubmit = async searchQuery => {
     const { currentPage } = this.state;
     const data = await getData({ searchQuery, currentPage });
-    console.log(data);
+
     this.setState({ images: data.hits });
   };
 

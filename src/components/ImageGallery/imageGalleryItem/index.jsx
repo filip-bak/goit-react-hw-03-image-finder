@@ -7,7 +7,6 @@ export class ImageGalleryItem extends Component {
   render() {
     const { src } = this.props;
     // onClick
-    console.log(src);
     return (
       <li className="gallery-item" style={{ width: 250 }}>
         <img src={src} alt="" style={{ objectFit: 'cover' }} />
