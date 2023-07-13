@@ -24,22 +24,24 @@ class ImageGalleryItem extends Component {
     const { loaded, error } = this.state;
     // onClick
     return (
-      <li
-        className={
-          loaded && !error
-            ? `${styles.container}`
-            : `${styles.container} ${styles.placeholder}`
-        }
-      >
-        <img
-          className={styles.image}
-          style={loaded ? {} : { visibility: 'hidden' }}
-          src={src}
-          alt=""
-          onLoad={this.handleLoad}
-          onError={this.handleError}
-        />
-      </li>
+      <>
+        <li
+          className={
+            loaded && !error
+              ? `${styles.container}`
+              : `${styles.container} ${styles.placeholder}`
+          }
+        >
+          <img
+            className={styles.image}
+            style={loaded ? {} : { visibility: 'hidden' }}
+            src={src}
+            alt=""
+            onLoad={this.handleLoad}
+            onError={this.handleError}
+          />
+        </li>
+      </>
     );
   }
 }
