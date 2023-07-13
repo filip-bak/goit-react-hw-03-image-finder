@@ -25,7 +25,7 @@ export class App extends Component {
     console.log('App state: ', this.state);
 
     return (
-      <div>
+      <div className="wrapper">
         <Searchbar onSubmit={this.handleSubmit} />
         <ImageGallery images={images} />
         <Button />

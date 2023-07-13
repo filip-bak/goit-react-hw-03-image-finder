@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import ImageGalleryItem from './imageGalleryItem';
+import ImageGalleryItem from './ImageGalleryItem';
+
+import styles from './ImageGallery.module.css';
 
 export class ImageGallery extends Component {
   static propTypes = { images: PropTypes.arrayOf(PropTypes.object) };
@@ -9,7 +11,7 @@ export class ImageGallery extends Component {
     // map items from api
     const { images } = this.props;
     return (
-      <ul className="gallery" style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <ul className={styles.container}>
         {images.map(({ id, webformatURL }) => {
           return <ImageGalleryItem key={id} src={webformatURL} />;
         })}

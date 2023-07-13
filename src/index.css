@@ -24,3 +24,11 @@ img {
   display: block;
   width: 100%;
 }
+
+/* --- UTILS --- */
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+  padding-bottom: 24px;
+}
