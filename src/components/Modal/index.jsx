@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import styles from './Modal.module.css';
+// import styles from './Modal.module.css';
 
 export class Modal extends Component {
-  static propTypes = {};
+  // static propTypes = {};
 
   render() {
     return (
