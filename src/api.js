@@ -17,9 +17,16 @@ export default async function getData({
     const response = await axios.get(
       `?key=${process.env.REACT_APP_API_KEY}&image_type=photo&orientation=horizontal&safesearch=true&${params}`
     );
+
     console.log('ApiData: ', response.data);
+
     return response.data;
   } catch (error) {
+    if (error.request.status === 400) return;
     console.error(error);
   }
+}
+
+export function getTotalPages(totalHits, itemsPerPage) {
+  return Math.ceil(totalHits / itemsPerPage);
 }
