@@ -5,9 +5,16 @@ import styles from './Button.module.css';
 
 export class Button extends Component {
   // static propTypes = {};
-
+  handleClick = () => {
+    const { onLoadMore } = this.props;
+    onLoadMore();
+  };
   render() {
-    return <button className={styles.btn}>Load more</button>;
+    return (
+      <button className={styles.btn} onClick={this.handleClick}>
+        Load more
+      </button>
+    );
   }
 }
 
