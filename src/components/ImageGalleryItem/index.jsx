@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import styles from './ImageGalleryItem.module.css';
 
 class ImageGalleryItem extends Component {
-  static propTypes = { src: PropTypes.string };
+  static propTypes = { src: PropTypes.string, onClick: PropTypes.func };
 
   state = {
     loaded: false,

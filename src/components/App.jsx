@@ -65,6 +65,8 @@ export class App extends Component {
             loading: false,
           });
 
+          window.scrollTo(0, 0);
+
           return;
         }
 
@@ -92,12 +94,10 @@ export class App extends Component {
     return (
       <div className="wrapper">
         <Searchbar onSubmit={this.handleSubmit} />
-        <ImageGallery
-          images={images}
-          onLoadMore={this.handleLoadMore}
-          sceleton={this.handleSceleton}
-        />
+        <ImageGallery images={images} />
+
         {ifNoImagesFound && <Placeholder title="Sorry, no images found" />}
+
         {loading ? (
           <DotsLoader loading={loading} />
         ) : (
