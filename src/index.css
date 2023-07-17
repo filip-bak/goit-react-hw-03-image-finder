@@ -1,9 +1,16 @@
 @import-normalize; /* bring in normalize.css styles */
 
 /* --- RESET --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   overflow-x: hidden;
 }
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -29,6 +36,14 @@ img {
 }
 
 /* --- UTILS --- */
+html.active-modal {
+  overflow-y: hidden;
+  margin: 0;
+  height: 100%;
+}
+.active-modal::-webkit-scrollbar {
+  display: none;
+}
 .wrapper {
   display: grid;
   grid-template-columns: 1fr;

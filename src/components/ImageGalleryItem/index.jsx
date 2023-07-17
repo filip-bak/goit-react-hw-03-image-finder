@@ -11,6 +11,22 @@ class ImageGalleryItem extends Component {
     error: false,
   };
 
+  scrollLock = () => {
+    const documentWidth = document.documentElement.clientWidth;
+    const windowWidth = window.innerWidth;
+    const scrollBarWidth = windowWidth - documentWidth;
+
+    document.documentElement.classList.add('active-modal');
+    document.body.style.paddingRight = `${scrollBarWidth}px`;
+  };
+
+  handleClick = () => {
+    const { onClick } = this.props;
+
+    this.scrollLock();
+    onClick();
+  };
+
   handleLoad = () => {
     this.setState({ loaded: true });
   };
@@ -20,7 +36,7 @@ class ImageGalleryItem extends Component {
   };
 
   render() {
-    const { src } = this.props;
+    const { src, largeSrc } = this.props;
     const { loaded, error } = this.state;
     // onClick
     return (
@@ -35,9 +51,11 @@ class ImageGalleryItem extends Component {
               className={styles.image}
               style={loaded ? {} : { visibility: 'hidden' }}
               src={src}
+              data-src={largeSrc}
               alt=""
               onLoad={this.handleLoad}
               onError={this.handleError}
+              onClick={this.handleClick}
             />
           </li>
         )}
