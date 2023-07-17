@@ -88,8 +88,12 @@ export class App extends Component {
   }
 
   render() {
-    const { images, loading, currentPage } = this.state;
-    const ifNoImagesFound = images.length === 0 && currentPage === 1;
+    const { images, loading, currentPage, totalPages } = this.state;
+    const ifNoImagesFound =
+      images.length === 0 &&
+      currentPage === 1 &&
+      totalPages === 0 &&
+      loading === false;
 
     return (
       <div className="wrapper">
