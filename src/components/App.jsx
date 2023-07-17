@@ -4,22 +4,32 @@ import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
 import Button from './Button';
 import getData, { getTotalPages } from 'api';
+import DotsLoader from './DotsLoader';
+import Placeholder from './Placeholder';
 
 export class App extends Component {
   state = {
     images: [],
-    currentPage: 1,
+    loading: false,
+    currentPage: 0,
     searchQuery: null,
     totalPages: 0,
     language: 'en',
   };
 
   handleSubmit = query => {
-    this.setState({ searchQuery: query, currentPage: 1 });
+    const { searchQuery } = this.state;
+    if (searchQuery === query) {
+      return;
+    }
+    this.setState({ searchQuery: query, currentPage: 1, loading: true });
   };
 
   handleLoadMore = () => {
-    this.setState(prevState => ({ currentPage: prevState.currentPage + 1 }));
+    this.setState(prevState => ({
+      currentPage: prevState.currentPage + 1,
+      loading: true,
+    }));
   };
 
   ifShowButton = () => {
@@ -52,28 +62,32 @@ export class App extends Component {
           this.setState({
             images: data.hits,
             totalPages: getTotalPages(data.totalHits, 12),
+            loading: false,
           });
+
           return;
         }
 
         if (totalPages < currentPage) {
-          this.setState({ currentPage: totalPages + 1 });
+          this.setState({ currentPage: totalPages + 1, loading: false });
+
           return;
         }
 
         this.setState(prevState => ({
+          ...prevState,
+          loading: false,
           images: [...prevState.images, ...data.hits],
         }));
-        console.log('UPDATE');
       }
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
     }
   }
 
   render() {
-    const { images } = this.state;
-    console.log('App state: ', this.state);
+    const { images, loading, currentPage } = this.state;
+    const ifNoImagesFound = images.length === 0 && currentPage === 1;
 
     return (
       <div className="wrapper">
@@ -83,9 +97,12 @@ export class App extends Component {
           onLoadMore={this.handleLoadMore}
           sceleton={this.handleSceleton}
         />
-        {this.ifShowButton() ? (
-          <Button onLoadMore={this.handleLoadMore} />
-        ) : null}
+        {ifNoImagesFound && <Placeholder title="Sorry, no images found" />}
+        {loading ? (
+          <DotsLoader loading={loading} />
+        ) : (
+          this.ifShowButton() && <Button onLoadMore={this.handleLoadMore} />
+        )}
       </div>
     );
   }
