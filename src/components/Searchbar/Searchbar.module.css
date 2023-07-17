@@ -58,13 +58,11 @@
 .input {
   display: inline-block;
   width: 100%;
-  font: inherit;
   font-size: 20px;
   border: none;
   outline: none;
   padding-left: 10px;
-  padding-right: 4px;
-  padding-block: 5px;
+  padding-right: 10px;
 }
 
 .input::placeholder {
